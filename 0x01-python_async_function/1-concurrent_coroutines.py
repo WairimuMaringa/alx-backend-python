@@ -3,7 +3,7 @@
 Import from task zero and write an async routine that
 takes two int args. Return list of delays in ascending order
 """
-import aysncio
+import asyncio
 from typing import List
 
 wait_random = __import__('0-basic_async_syntax').wait_random
