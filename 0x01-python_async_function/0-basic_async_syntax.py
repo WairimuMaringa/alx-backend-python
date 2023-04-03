@@ -1,4 +1,4 @@
-#!/usr/bin/python3
+#!/usr/bin/env python3
 """
 Asnyc function that takes an argument that waits for a
 random delay between 0 and the arg seconds and returns it
