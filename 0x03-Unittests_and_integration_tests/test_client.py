@@ -87,6 +87,6 @@ class TestIntegrationGithubOrgClient(unittest.TestCase):
         self.assertEqual(return_value, expected)
 
     @classmethod
-    def tearDownClass(cls)
-    """ tear down the class. """
-    cls.get_patcher.stop()
+    def tearDownClass(cls):
+        """ tear down the class. """
+        cls.get_patcher.stop()
