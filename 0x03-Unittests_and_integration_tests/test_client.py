@@ -51,3 +51,41 @@ class TestGithubOrgClient(unittest.TestCase):
 
             mock_public.assert_called_once()
             mock_json.assert_called_once()
+
+    @parameterized.expand([
+        ({"license": {"key": "react2"}}, "react", False),
+        ({"license": {"key": "django"}}, "django", True)
+        ])
+    def test_has_license(self, repo, license, expected):
+        """ Test for license. """
+        test_class = GithubOrgClient('django')
+        return_value = test_class.has_license(repo, license)
+        self.assertEqual(return_value, expected)
+
+
+@parameterized_class(
+        ("org_payload", "repos_payload", "expected_repos", "apache2_repos"),
+        TEST_PAYLOAD
+        )
+class TestIntegrationGithubOrgClient(unittest.TestCase):
+    """ Test for github org client. """
+
+    @classmethod
+    def setUpClass(cls):
+        """ set class. """
+        cls.get_patcher = patch('requests.get', side_effect=HTTPError)
+
+    @parameterized.expand([
+        ({"license": {"key": "react2"}}, "react", False),
+        ({"license": {"key": "django"}}, "django", True)
+        ])
+    def test_has_license(self, repo, license, expected):
+        """ Test for license that is expected. """
+        test_class = GithubOrgClient('django')
+        return_value = test_class.has_license(repo, license)
+        self.assertEqual(return_value, expected)
+
+    @classmethod
+    def tearDownClass(cls)
+    """ tear down the class. """
+    cls.get_patcher.stop()
