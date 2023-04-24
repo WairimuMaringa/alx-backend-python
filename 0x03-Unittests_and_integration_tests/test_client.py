@@ -14,15 +14,15 @@ class TestGithubOrgClient(unittest.TestCase):
     """ Tests the github org client. """
 
     @parameterized.expand([
-        ('google'),
-        ('abc')
+        ("google"),
+        ("abc")
     ])
     @patch('client.get_json')
-    def test_org(self, input, mock):
+    def test_org(self, orgname, mock):
         """ Tests for correct output. """
-        test_class = GithubOrgClient(input)
+        test_class = GithubOrgClient(orgname)
         test_class.org()
-        mock.assert_called_once_with(f'https://api.github.com/orgs/{input}')
+        mock.assert_called_once_with(f'https://api.github.com/orgs/{orgname}')
 
     def test_public_repos_url(self):
         """ Tests for correct output. """
