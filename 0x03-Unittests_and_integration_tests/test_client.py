@@ -3,6 +3,7 @@
 Client tests
 """
 import unittest
+from urllib.error import HTTPError
 from parameterized import parameterized, parameterized_class
 from client import GithubOrgClient
 from unittest.mock import patch, Mock, PropertyMock
